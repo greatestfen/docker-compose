@@ -1,0 +1,16 @@
+version: '2'
+services:
+  app: 
+    build: java-demo
+    links:
+      - launcher
+
+  java:
+    container_name: java-launcher
+    image: openjdk:7
+    depends_on:
+      - app
+    volumes:
+      - target/:/target
+    working_dir: /root/target
+    command: java -jar demo.jar
