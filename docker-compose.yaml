@@ -2,8 +2,6 @@ version: '2'
 services:
   app: 
     build: java-demo
-    links:
-      - launcher
 
   java:
     container_name: java-launcher
@@ -11,6 +9,6 @@ services:
     depends_on:
       - app
     volumes:
-      - target/:/target
-    working_dir: /root/target
+      - /usr/share/app:/usr/share/app
+    working_dir: /usr/share/app
     command: java -jar demo.jar
